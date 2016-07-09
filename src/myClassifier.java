@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -31,8 +32,52 @@ public class myClassifier extends Classifier {
 
 	@Override
 	public void makePredictions(String testDataFilepath) {
+		// initialize scanner and variables
+		Scanner in;
+		double correct = 0;
+		double total = 0;
 
+		try {
+			in = new Scanner(new File(testDataFilepath));
+
+			while (in.hasNextLine()) {
+				double pypositive = pMore;
+				double pynegative = pLess;
+				String tempLine = in.nextLine();
+				String[] line = tempLine.split("\\s+");
+				// TODO change this length-2 to -1 when handle the real data
+				for (int i = 1; i < line.length - 2; i++) {
+					// if it's numerical values, skip to the next aspect
+					if (i == 9 || i == 10 || i == 11 || i == 3) {
+						continue;
+					}
+					pypositive *= positive.get(line[i]);
+					pynegative *= negative.get(line[i]);
+				}
+				String prediction = "";
+				if (pypositive > pynegative) {
+					prediction = ">50K";
+				} else {
+					prediction = "<=50K";
+				}
+
+				// TODO test code
+				total++;
+				if (prediction.equals(line[line.length - 1])) {
+					correct++;
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("There were in total " + total + ", correct "
+				+ correct + "\nCorrect rate is: " + correct / total);
 	}
+
+	// testSet
 
 	/*-
 	 * This method read the train file
@@ -41,6 +86,8 @@ public class myClassifier extends Classifier {
 	 */
 	public static void readTrainFile(String filename)
 			throws FileNotFoundException {
+		PrintWriter printer = new PrintWriter("filename.txt");
+
 		// initialize scanner and variables
 		Scanner in = new Scanner(new File(filename));
 		int count = 0;
@@ -92,10 +139,14 @@ public class myClassifier extends Classifier {
 				}
 			} else {
 				// Skip the line
-				testSet.add(in.nextLine());
+				String thisLine = in.nextLine();
+				// System.out.println(thisLine);
+				printer.println(thisLine);
+				testSet.add(thisLine);
 
 			}
 		}
+		printer.close();
 
 		// initialize smoothing factors
 		double l = 1.0;
@@ -139,10 +190,11 @@ public class myClassifier extends Classifier {
 		pLess = pLess / total;
 
 		System.out.println("There are " + count
-				+ " lines of data\nWe will learn from " + trainingSet.size()
-				+ "\npMore: " + pMore + "\npLess: " + pLess);
-		System.out.println(positive.size() + " " + positive);
-		System.out.println(negative.size() + " " + negative);
+				+ " lines of data. We will learn from " + trainingSet.size()
+				+ ", test from " + testSet.size());
+
+		// System.out.println(positive.size() + " " + positive);
+		// System.out.println(negative.size() + " " + negative);
 	}
 
 	/*
@@ -177,18 +229,18 @@ public class myClassifier extends Classifier {
 			lines.add(in.nextLine());
 		}
 
-		System.out.println("Response results are: " + results);
+		// System.out.println("Response results are: " + results);
 
 		// parse the txt file and add aspects in an arraylist to categories
 		for (int i = 0; i < lines.size(); i++) {
 			ArrayList<String> aspects = new ArrayList<String>();
 			String[] line = lines.get(i).split("\\s+");
-			System.out.print(line[0] + "\n");
+			// System.out.print(line[0] + "\n");
 			for (int j = 1; j < line.length; j++) {
 				aspects.add(line[j]);
-				System.out.print(line[j] + ", ");
+				// System.out.print(line[j] + ", ");
 			}
-			System.out.println("\n");
+			// System.out.println("\n");
 			categories.add(aspects);
 		}
 	}
@@ -197,7 +249,8 @@ public class myClassifier extends Classifier {
 		myClassifier temp = new myClassifier("census.names");
 		// System.out.println(categories);
 
-		readTrainFile("census.train");
+		temp.readTrainFile("census.train");
+		temp.makePredictions("filename.txt");
 	}
 
 }
