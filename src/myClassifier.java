@@ -1,3 +1,7 @@
+/*
+ * Ketao Yin and Shaoran Sun
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -41,7 +45,7 @@ public class myClassifier extends Classifier {
 	@Override
 	public void train(String trainingDataFilpath) {
 		try {
-//			readNameFile(trainingDataFilpath);
+			// readNameFile(trainingDataFilpath);
 			readTrainFile(trainingDataFilpath);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -52,8 +56,8 @@ public class myClassifier extends Classifier {
 	public void makePredictions(String testDataFilepath) {
 		// initialize scanner and variables
 		Scanner in;
-//		double correct = 0;
-//		double total = 0;
+		// double correct = 0;
+		// double total = 0;
 
 		try {
 			in = new Scanner(new File(testDataFilepath));
@@ -64,9 +68,9 @@ public class myClassifier extends Classifier {
 				String tempLine = in.nextLine();
 				String[] line = tempLine.split("\\s+");
 				// TODO change this length-2 to -1 when handle the real data
-				for (int i = 1; i < line.length - 1; i++) {
+				for (int i = 0; i < line.length - 1; i++) {
 					// if it's numerical values, skip to the next aspect
-					if (i == 9 || i == 10 || i == 11 || i == 3) {
+					if (i == 9 || i == 10 || i == 11 || i == 3 || i == 0) {
 						pypositive *= (Math.exp(-(Math.pow(
 								(Double.parseDouble(line[i]))
 										- posContMean.get(i), 2))
@@ -89,23 +93,23 @@ public class myClassifier extends Classifier {
 				} else {
 					prediction = "<=50K";
 				}
-				
+
 				System.out.println(prediction);
 
 				// TODO test code
-//				total++;
-//				if (prediction.equals(line[line.length - 1])) {
-//					correct++;
-//				}
+				// total++;
+				// if (prediction.equals(line[line.length - 1])) {
+				// correct++;
+				// }
 			}
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
-//		System.out.println("There were in total " + total + ", correct "
-//				+ correct + "\nCorrect rate is: " + correct / total);
-//		System.out.println(correct / total);
+		// System.out.println("There were in total " + total + ", correct "
+		// + correct + "\nCorrect rate is: " + correct / total);
+		// System.out.println(correct / total);
 	}
 
 	/*-
@@ -117,7 +121,7 @@ public class myClassifier extends Classifier {
 	public void readTrainFile(String filename) throws FileNotFoundException {
 		// TODO testcode
 		// output the testSet to a txt file for testing
-//		PrintWriter printer = new PrintWriter("filename.txt");
+		// PrintWriter printer = new PrintWriter("filename.txt");
 
 		// initialize scanner and variables
 		Scanner in = new Scanner(new File(filename));
@@ -139,9 +143,9 @@ public class myClassifier extends Classifier {
 					positiveSet.add(tempLine);
 					// update aspects
 
-					for (int i = 1; i < line.length - 2; i++) {
+					for (int i = 0; i < line.length - 2; i++) {
 						// if it's numerical values, take sum
-						if (i == 9 || i == 10 || i == 11 || i == 3) {
+						if (i == 9 || i == 10 || i == 11 || i == 3 || i == 0) {
 							if (!posContinuous.keySet().contains(i)) {
 								// add the key and value to both hashmaps
 								posContinuous.put(i,
@@ -174,9 +178,9 @@ public class myClassifier extends Classifier {
 					// add line to negative set
 					negativeSet.add(tempLine);
 					// update negative aspects
-					for (int i = 1; i < line.length - 2; i++) {
+					for (int i = 0; i < line.length - 2; i++) {
 						// if it's numerical values, skip to the next aspect
-						if (i == 9 || i == 10 || i == 11 || i == 3) {
+						if (i == 9 || i == 10 || i == 11 || i == 3 || i == 0) {
 							if (!negContinuous.keySet().contains(i)) {
 								negContinuous.put(i,
 										Double.parseDouble(line[i]));
@@ -204,12 +208,12 @@ public class myClassifier extends Classifier {
 				// Skip the line and add to test set
 				String thisLine = in.nextLine();
 				// System.out.println(thisLine);
-//				printer.println(thisLine);
+				// printer.println(thisLine);
 				testSet.add(thisLine);
 
 			}
 		}
-//		printer.close();
+		// printer.close();
 
 		// initialize smoothing factors
 		double l = 1.0;
@@ -347,13 +351,13 @@ public class myClassifier extends Classifier {
 		}
 	}
 
-//	public static void main(String[] args) throws FileNotFoundException {
-//		myClassifier temp = new myClassifier("census.names");
-//		// System.out.println(categories);
-//		 for (int i = 0; i < 100; i++) {
-//		temp.train("census.train");
-//		temp.makePredictions("filename.txt");
-//		 }
-//	}
+	// public static void main(String[] args) throws FileNotFoundException {
+	// myClassifier temp = new myClassifier("census.names");
+	// // System.out.println(categories);
+	// for (int i = 0; i < 100; i++) {
+	// temp.train("census.train");
+	// temp.makePredictions("filename.txt");
+	// }
+	// }
 
 }
