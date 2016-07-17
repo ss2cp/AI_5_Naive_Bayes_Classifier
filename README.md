@@ -10,7 +10,7 @@ This is a classification program implemented with Naive Bayes Classifier.
 
 **Language:** Java
 
-####*First 20 lines of Data:*
+####*First 20 Lines of Training Data:*
 ```
 60 Self-emp-not-inc HS-grad 9 Married-civ-spouse Exec-managerial Husband White Male 0 0 50 United-States >50K 
 28 Private 9th 4 Never-married Other-service Own-child White Female 0 0 35 El-Salvador <=50K 
