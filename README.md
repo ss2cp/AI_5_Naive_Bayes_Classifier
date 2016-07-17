@@ -1,4 +1,4 @@
-# AI_HW5
+# AI_5_Naive_Bayes_Classifier
 a classification program with Naive Bayes Classifier
 
 ## Background
