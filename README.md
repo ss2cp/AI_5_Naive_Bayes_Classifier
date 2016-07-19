@@ -47,9 +47,66 @@ There are 2 kinds of data in the training set, *continuous* and *discrete (categ
 
 <img src="https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/probability_density_function.png" width="250">
 
-**Discrete Case:** We need to count occurences of each feature given each response, and calculate the probabilities of each response given a feature. Then, we simply use the *Bayes' law*, adding 2 "smoothing factors" as following, to calculate the probabilities for each features. Multiply all the probabilities given both responses, and choose the higher response as our final prediction.
+**Discrete Case:** We need to count occurences of each feature given each response, and calculate the probabilities of each response given a feature. Then, we simply use the *Bayes' Law*, adding 2 "smoothing factors" as following, to calculate the probabilities for each features. Multiply all the probabilities given both responses, and choose the higher response as our final prediction.
 
 <img src="https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/discrete_function.png" width="550">
+
+##Pseudo Code for Learning
+```java
+public void readTrainFile(String filename) {
+
+  // READING IN EACH LINE OF THE DATA
+
+  initialize scanners and variables
+  // we want 0.7 of the data as training set
+  while (hasNextLine) {
+    // 70% of the data will be added to training set, the rest will be added to test set
+    // TODO change this number to 1 to read all data
+    if (Math.random() <= 0.7) { 
+      read in the line and add to trainSet
+      split the line with whitespace
+      if response is '>50K' {
+        increment total count of '>50K'
+        for each feature
+          if numerical value
+            take sum
+          if discrete value
+            increment the count of such aspect of such feature
+      } else if response is '<=50K' 
+        do the same for response '<=50K'
+    } else
+      skip and add the line to test set
+  }
+
+  // PROCESS DATA
+
+  // initialize smoothing factors
+  double l = 1.0;
+  double j = 0.0;
+  calculate proportion of each aspects using: (D(x&y)+l) / (D(y)+lj)
+  add up total count 
+  calculate proportions of each response
+  calculate means and variances of continuous features of each response
+}
+```
+
+##Pseudo Code for Predicting
+```java
+public void makePredictions(String testDataFilepath) {
+  initialize scanner and variables
+
+  while (hasNextLine) {
+    read in and split the line with whitespace
+    for each feature
+      if numerical value 
+        multiply probabilities of each response using probability density function
+      else 
+        multiply probabilities of each response using Bayes Law
+  }
+  print the response with higher probability
+}
+```
+
 
 ![alt tag](https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/Discrete.png)
 
