@@ -107,7 +107,16 @@ public void makePredictions(String testDataFilepath) {
 }
 ```
 
+##Testing
+To test the efficiency of the algorithm, I first only implemented the discrete cases, and use 0.7 of the data as training set and the other 0.3 as test set. Applying only discrete rules, and have the algorithm run 100 times with random 0.7 of the data as training set, we get an average of 0.773 correction rate:
 
 ![alt tag](https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/Discrete.png)
 
+Then we implemented the continuous cases and the probability functions with the
+discrete cases, and combining the two.
+
 ![alt tag](https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/Both.png)
+
+##Results
+
+##Analysis
