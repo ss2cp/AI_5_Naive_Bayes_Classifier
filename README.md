@@ -112,11 +112,13 @@ To test the efficiency of the algorithm, I first only implemented the discrete c
 
 ![alt tag](https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/Discrete.png)
 
-Then we implemented the continuous cases and the probability functions with the
-discrete cases, and combining the two.
+Then I implemented the continuous cases and combined the probability functions with the discrete cases.
 
 ![alt tag](https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/Both.png)
 
-##Results
-
 ##Analysis
+Not surprisingly, the algorithm with continuous taken into consideration is more effective than the one without. Our original algorithm has an average of 0.773 correction rate of 100 random trials, whereas the new algorithm has 0.782 on average. There is a 0.009 of improvement on correct rate. The improvement is not too significant.
+
+The testing results we saw throughout this project demonstrated that this algorithm rely mostly on discrete variables than continuous variables. One of the reasons could be that some of the continuous variables are all 0s.
+
+Overall, this project demonstrated that NaiveBayes algorithm is very easy to implement and gives a pretty reliable result.
