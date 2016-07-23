@@ -1,4 +1,4 @@
-# AI_5_Naive_Bayes_Classifier
+# ML-NaiveBayesClassifier
 a classification program with Naive Bayes Classifier
 
 ## Background
