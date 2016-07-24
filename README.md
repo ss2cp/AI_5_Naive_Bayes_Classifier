@@ -2,7 +2,9 @@
 a classification program with Naive Bayes Classifier
 
 ## Background
-This is a classification program implemented with Naive Bayes Classifier. [Read more words!](./nonparametric-project)
+This is a classification program implemented with Naive Bayes Classifier. 
+
+**Another one of my nonparametrics projects studying the influence of people’s education level on their occupation using R also applies the same dataset can be found here:* [nonparametric-project](https://github.com/ss2cp/nonparametric-project)
 
 **Training Data:** A training set of 1500 census data. Each line of data has 13 features, 5 of which are continuous. The response variables are the salaries of citizens, either >50K or <=50K, based on various features in the data.
 
