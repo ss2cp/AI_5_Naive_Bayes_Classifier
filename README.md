@@ -1,8 +1,7 @@
 # ML-NaiveBayesClassifier
-a classification program with Naive Bayes Classifier
-
 **Another one of my nonparametrics projects studying the influence of people’s education level on their occupation using R also applies the same dataset can be found here:* [nonparametric-project](https://github.com/ss2cp/nonparametric-project)
 
+a classification program with Naive Bayes Classifier
 
 ## Background
 This is a classification program implemented with Naive Bayes Classifier. 
