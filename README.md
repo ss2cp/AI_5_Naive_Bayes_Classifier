@@ -1,5 +1,5 @@
-# ML-NaiveBayesClassifier
 \**A nonparametrics R project studying the influence of people’s education level on their occupation with the* **same dataset** *can be found here:* [Nonparametric-Statistic-Project](https://github.com/ss2cp/nonparametric-project)
+# ML-NaiveBayesClassifier
 
 a classification program with Naive Bayes Classifier
 
