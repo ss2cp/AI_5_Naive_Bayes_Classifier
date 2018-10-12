@@ -12,7 +12,7 @@ This is a classification program implemented with Naive Bayes Classifier.
 
 **Language:** Java
 
-####*First 20 Lines of Training Data:*
+#### *First 20 Lines of Training Data:*
 ```
 60 Self-emp-not-inc HS-grad 9 Married-civ-spouse Exec-managerial Husband White Male 0 0 50 United-States >50K 
 28 Private 9th 4 Never-married Other-service Own-child White Female 0 0 35 El-Salvador <=50K 
@@ -53,7 +53,7 @@ There are 2 kinds of data in the training set, *continuous* and *discrete (categ
 
 <img src="https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/discrete_function.png" width="550">
 
-##Pseudo Code for Learning
+## Pseudo Code for Learning
 ```java
 public void readTrainFile(String filename) {
 
@@ -92,7 +92,7 @@ public void readTrainFile(String filename) {
 }
 ```
 
-##Pseudo Code for Predicting
+## Pseudo Code for Predicting
 ```java
 public void makePredictions(String testDataFilepath) {
   initialize scanner and variables
@@ -109,7 +109,7 @@ public void makePredictions(String testDataFilepath) {
 }
 ```
 
-##Testing
+## Testing
 To test the efficiency of the algorithm, I first only implemented the discrete cases, and use 0.7 of the data as training set and the other 0.3 as test set. Applying only discrete rules, and have the algorithm run 100 times with random 0.7 of the data as training set, we get an average of 0.773 correction rate:
 
 ![alt tag](https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/Discrete.png)
@@ -118,7 +118,7 @@ Then I implemented the continuous cases and combined the probability functions w
 
 ![alt tag](https://raw.githubusercontent.com/ss2cp/AI_HW5/master/results/Both.png)
 
-##Analysis
+## Analysis
 Not surprisingly, the algorithm with continuous taken into consideration is more effective than the one without. Our original algorithm has an average of 0.773 correction rate of 100 random trials, whereas the new algorithm has 0.782 on average. There is a 0.009 of improvement on correct rate. The improvement is not too significant.
 
 The testing results we saw throughout this project demonstrated that this algorithm rely mostly on discrete variables than continuous variables. One of the reasons could be that some of the continuous variables are all 0s. Please inspect the [Sample Data](#background).
